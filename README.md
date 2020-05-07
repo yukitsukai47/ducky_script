@@ -1,5 +1,6 @@
 # Ducky Script
-rubber ducky用のスクリプト
+rubber ducky用のスクリプト  
+バックアップ用に随時追記
 
 # 環境
 ATMega32U4を使用
